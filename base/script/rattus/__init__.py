@@ -4,9 +4,9 @@ from datetime import datetime
 import registry
 import logger
 import main
-from cache import cache
 import ftool
-import service
+from cache import *
+from service import *
 
 def init():
     logger.debug("Initializing...")
