@@ -2,22 +2,29 @@ import os, urllib2, httplib, rattus
 
 class webserviceGET:
     
-    config = {
-        "host": "127.0.0.1",
-        "href": "",
-        "protocol": "http",
-        "port": 80,
-        "username": "",
-        "password": ""
-    }
-    
+    config = {}
     request = ""
     response = ""
     
     def __init__(self, config = {}):
+        self.setConfig(config)
+        return
+    
+    def setConfig(config):
+        self.config = {
+            "host": "127.0.0.1",
+            "href": "",
+            "protocol": "http",
+            "port": 80,
+            "username": "",
+            "password": ""
+        }
         for i in config:
             self.config[i] = config[i]
         return
+    
+    def getConfig(config):
+        return self.config
     
     def getHref(self):
         return self.config["href"]
@@ -42,6 +49,9 @@ class webserviceGET:
     
     def setUsername(self, username):
         self.config["username"] = username
+    
+    def getPassword(self, password):
+        return self.config["password"]
     
     def setPassword(self, password):
         self.config["password"] = password

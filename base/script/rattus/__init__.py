@@ -8,10 +8,23 @@ import ftool
 from cache import *
 from service import *
 
-def init():
+def init(mode = ""):
     logger.debug("Initializing...")
     
-    error = main.main()
+    app = main.application()
+    registry.setValue("application", app)
+    
+    error = None
+    try:
+        isfunc = eval("type(app." + mode + ")")
+    except:
+        isfunc = ""
+        pass
+    
+    if (mode != "" and str(isfunc) == "<type 'instancemethod'>"):
+        error = eval("app." + mode + "()")
+    else:
+        error = app.main()
     
     if (error is not None):
         logger.logException(error)

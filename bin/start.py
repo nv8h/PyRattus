@@ -38,6 +38,10 @@ rattus.registry.setValue("file", {
                     "log":  __log_file__
                 })
 
-rattus.init()
+mode = ""
+if (len(sys.argv) > 1):
+    mode = sys.argv[1]
+
+rattus.init(mode)
 
 
