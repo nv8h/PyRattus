@@ -1,4 +1,4 @@
-from rattus import ftool
+from rattus import ftool, service
 from rattus import *
 
 __PROGRAMNAME__ = "programname"

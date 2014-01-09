@@ -6,6 +6,7 @@ import logger
 import main
 from cache import cache
 import ftool
+import service
 
 def init():
     logger.debug("Initializing...")
