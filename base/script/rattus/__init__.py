@@ -16,13 +16,13 @@ def init(mode = ""):
     
     error = None
     try:
-        isfunc = eval("type(app." + mode + ")")
+        isfunc = eval("type(app." + mode + "Action)")
     except:
         isfunc = ""
         pass
     
     if (mode != "" and str(isfunc) == "<type 'instancemethod'>"):
-        error = eval("app." + mode + "()")
+        error = eval("app." + mode + "Action()")
     else:
         error = app.main()
     

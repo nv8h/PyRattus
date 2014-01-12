@@ -14,14 +14,14 @@ class application:
         ftool.checkDir(__PROGRAMNAME__)
         return
     
-    def main(self):
+    def mainAction(self):
         # to run this file "launcher.sh"
         print("Welcome to the 'normal' mode")
 
         # Return with Error Message
         return None
 
-    def service(self):
+    def serviceAction(self):
         # to run this file "service.sh"
         print("Welcome to the 'service' mode")
 
