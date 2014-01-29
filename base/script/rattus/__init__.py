@@ -1,5 +1,4 @@
 
-
 from datetime import datetime
 import registry
 import logger
@@ -24,7 +23,7 @@ def init(mode = ""):
     if (mode != "" and str(isfunc) == "<type 'instancemethod'>"):
         error = eval("app." + mode + "Action()")
     else:
-        error = app.main()
+        error = app.mainAction()
     
     if (error is not None):
         logger.logException(error)
