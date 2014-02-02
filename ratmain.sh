@@ -14,7 +14,7 @@ case $1 in
     "") echo "For information type ratmain --help";;
     "edit")
         backup()
-        mcedit "base/script/main.py"
+        mcedit ${MAINFILE}
     ;;
     "diff")
         diff $MAINFILE $BACKUPFILE

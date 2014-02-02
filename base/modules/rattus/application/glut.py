@@ -31,24 +31,24 @@ class glut(abstract.abstract):
         glutTimerFunc(self.params['timeout'], self.timer, 0);
         
         self.init()
-        pass
+        return
     
     def activate(self):
         glutSetWindow(self.windowId)
-        pass
+        return self
     
     def destroy(self):
         glutDisplayWindow(self.windowId)
         del self
-        pass
+        return
     
     def redisplay(self):
         self.activate()
         glutPostRedisplay()
-        pass
+        return self
     
     def run(self):
         self.activate()
         glutPostRedisplay()
         glutMainLoop()
-        pass
+        return self

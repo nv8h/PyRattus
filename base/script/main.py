@@ -1,7 +1,5 @@
 import sys
-from rattus import application,ftool,service,geometry
-from rattus import *
-
+from rattus import application,ftool,service,geometry,registry
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
@@ -19,10 +17,7 @@ class application(application.glut):
         # Create and Check Local Share Directory
         ftool.checkDir(__PROGRAMNAME__)
         self.vec = geometry.vertexManager()
-        self.vec.addVector2f(-0.5,-0.5)
-        self.vec.addVector2f( 0.5,-0.5)
-        self.vec.addVector2f( 0.5, 0.5)
-        self.vec.addVector2f(-0.5, 0.5)
+        self.vec.addVector2f(-0.5,-0.5).addVector2f( 0.5,-0.5).addVector2f( 0.5, 0.5).addVector2f(-0.5, 0.5)
         return
     
     

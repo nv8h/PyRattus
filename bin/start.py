@@ -16,6 +16,7 @@ __cache_directory__ = __base_directory__ + "/cache"
 __log_file__ = __logs_directory__ + "/error.log"
 
 sys.path.append(__script_directory__)
+sys.path.append(__base_directory__ + "/modules")
 
 
 import rattus

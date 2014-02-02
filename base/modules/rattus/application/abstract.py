@@ -9,44 +9,43 @@ class abstract:
     windowId = None
     
     def initParams(self):
-        pass
+        return self
     
     def __init__(self):
-        self.initParams()
-        self.init()
-        pass
+        self.initParams().init()
+        return
     
     def init(self):
-        pass
+        return
     
     def mouse(self, button, state, x, y):
-        pass
+        return
     
     def mouseMotion(self, x, y):
-        pass
+        return
     
     def keyboard(self, asciiCode, x, y):
-        pass
+        return
     
     def keyboardSpecial(self, key, x, y):
-        pass
+        return
     
     def idle(self):
-        pass
+        return
     
     def timer(self, value):
-        pass
+        return
     
     def render(self):
-        pass
+        return
     
     def run(self):
-        pass
+        return self
     
     def destroy(self):
         del self
-        pass
+        return
     
     def redisplay(self):
-        pass
+        return self
     
