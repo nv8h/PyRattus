@@ -11,15 +11,20 @@ registry.setValue("programname", __PROGRAMNAME__)
 
 class application(application.glut):
     
+    vecmove = [0.01, 0.005]
     vec = None
+    
+    def initParams(self):
+        self.params['width'] = 400
+        self.params['height'] = 400
+        return self
     
     def init(self):
         # Create and Check Local Share Directory
         ftool.checkDir(__PROGRAMNAME__)
         self.vec = geometry.vertexManager()
-        self.vec.addVector2f(-0.5,-0.5).addVector2f( 0.5,-0.5).addVector2f( 0.5, 0.5).addVector2f(-0.5, 0.5)
+        self.vec.addVector2f(-0.5, 0.).addVector2f( 0.,-0.5).addVector2f( 0.5, 0.).addVector2f( 0., 0.5)
         return
-    
     
     def render(self):
         glClearColor(0.,0.,0.,1.)
@@ -34,7 +39,28 @@ class application(application.glut):
         return
     
     def timer(self,value):
-        self.vec.add2f(0.01,0.01)
+        vecs = self.vec.toArray()
+
+
+        if (abs(vecs[0][0]) >= 1.0):
+            self.vecmove[0] = self.vecmove[0] * -1
+        if (abs(vecs[0][1]) >= 1.0):
+            self.vecmove[1] = self.vecmove[1] * -1
+        if (abs(vecs[1][0]) >= 1.0):
+            self.vecmove[0] = self.vecmove[0] * -1
+        if (abs(vecs[1][1]) >= 1.0):
+            self.vecmove[1] = self.vecmove[1] * -1
+        if (abs(vecs[2][0]) >= 1.0):
+            self.vecmove[0] = self.vecmove[0] * -1
+        if (abs(vecs[2][1]) >= 1.0):
+            self.vecmove[1] = self.vecmove[1] * -1
+        if (abs(vecs[3][0]) >= 1.0):
+            self.vecmove[0] = self.vecmove[0] * -1
+        if (abs(vecs[3][1]) >= 1.0):
+            self.vecmove[1] = self.vecmove[1] * -1
+
+
+        self.vec.add2f(self.vecmove[0],self.vecmove[1])
         self.redisplay()
         glutTimerFunc(self.params['timeout'], self.timer, value)
         return
@@ -42,6 +68,7 @@ class application(application.glut):
     def mainAction(self):
         # to run this file "launcher.sh"
         print("Welcome to the 'normal' mode")
+        self.title('PyRattus DEMO')
         self.run()
         # Return with Error Message
         return None

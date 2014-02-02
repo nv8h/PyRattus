@@ -15,16 +15,28 @@ class vector:
     def __init__(self,x,y,z):
         self.add3f(x,y,z)
     
-    def isbefore2f(self,x,y):
+    def isBefore2f(self,x,y):
+        return (self.x < x and self.y < y)
+    
+    def isBefore3f(self,x,y,z):
+        return (self.x < x and self.y < y and self.z < z)
+    
+    def isAfter2f(self,x,y):
+        return (self.x > x and self.y > y)
+    
+    def isAfter3f(self,x,y,z):
+        return (self.x > x and self.y > y and self.z > z)
+    
+    def isBeforeAbs2f(self,x,y):
         return (abs(self.x) < abs(x) and abs(self.y) < abs(y))
     
-    def isbefore3f(self,x,y,z):
+    def isBeforeAbs3f(self,x,y,z):
         return (abs(self.x) < abs(x) and abs(self.y) < abs(y) and abs(self.z) < abs(z))
     
-    def isafter2f(self,x,y):
+    def isAfterAbs2f(self,x,y):
         return (abs(self.x) > abs(x) and abs(self.y) > abs(y))
     
-    def isafter3f(self,x,y,z):
+    def isAfterAbs3f(self,x,y,z):
         return (abs(self.x) > abs(x) and abs(self.y) > abs(y) and abs(self.z) > abs(z))
     
     def equal2f(self,x,y):

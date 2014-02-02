@@ -28,7 +28,8 @@ class glut(abstract.abstract):
         glutMotionFunc(self.mouseMotion)
         glutKeyboardFunc(self.keyboard)
         glutSpecialFunc(self.keyboardSpecial)
-        glutTimerFunc(self.params['timeout'], self.timer, 0);
+        glutTimerFunc(self.params['timeout'], self.timer, 0)
+        glutReshapeFunc(self.reshape)
         
         self.init()
         return
@@ -52,3 +53,34 @@ class glut(abstract.abstract):
         glutPostRedisplay()
         glutMainLoop()
         return self
+    
+    def hide(self):
+        self.activate()
+        glutHideWindow()
+        return self
+    
+    def show(self):
+        self.activate()
+        glutShowWindow()
+        return self
+    
+    def setPosition(self, x, y):
+        self.activate()
+        self.params['x'] = x
+        self.params['y'] = y
+        glutPositionWindow(x,y)
+        return self
+    
+    def setResolution(self, width, height):
+        self.activate()
+        self.params['width'] = width
+        self.params['height'] = height
+        glutReshapeWindow(width, height)
+        return self
+    
+    def title(self, title):
+        self.activate()
+        self.params['title'] = title
+        glutSetWindowTitle(title)
+        return self
+    
