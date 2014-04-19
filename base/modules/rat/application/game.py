@@ -3,7 +3,7 @@ import abstract
 import pygame
 
 
-class pygame(abstract.abstract):
+class game(abstract.abstract):
     
     clock = None
     surface = None
