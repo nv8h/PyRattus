@@ -45,7 +45,7 @@ class wgtk(abstract.abstract):
         return
 
     def hide(self):
-        self.__wnd__.hde()
+        self.__wnd__.hide()
         return
 
     def show(self):

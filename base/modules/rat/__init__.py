@@ -22,8 +22,10 @@ def init(mode = ""):
         pass
     
     if (mode != "" and str(isfunc) == "<type 'instancemethod'>"):
+        registry.setValue("mode", mode)
         error = eval("app." + mode + "Action()")
     else:
+        registry.setValue("mode", "main")
         error = app.mainAction()
     
     if (error is not None):
