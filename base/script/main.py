@@ -1,5 +1,5 @@
-import sys
-from rattus import application,ftool,service,geometry,registry
+# import sys
+from rat import application,ftool,geometry,registry
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
@@ -40,8 +40,7 @@ class application(application.glut):
     
     def timer(self,value):
         vecs = self.vec.toArray()
-
-
+        
         if (abs(vecs[0][0]) >= 1.0):
             self.vecmove[0] = self.vecmove[0] * -1
         if (abs(vecs[0][1]) >= 1.0):

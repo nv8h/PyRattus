@@ -1,4 +1,4 @@
-from rattus import registry
+from rat import registry
 import abstract
 from OpenGL.GLUT import *
 from OpenGL.GLU import *

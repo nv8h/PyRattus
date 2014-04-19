@@ -1,7 +1,7 @@
-import sys
+# import sys
 import time
 import os
-import rattus
+import rat
 
 class cache:
     enabled = 0
@@ -12,7 +12,7 @@ class cache:
     def __init__(self, enabled = 0, path = "", lifetime = 0):
         self.enabled = enabled
         if (path == ""):
-            path = rattus.registry.getValue("path")["cache"]
+            path = rat.registry.getValue("path")["cache"]
         self.path = path
         self.lifetime = lifetime
     
@@ -44,14 +44,14 @@ class cache:
         filepath = self.path + "/" + cacheid
         if (os.path.is_dir(filepath)):
             return
-        rattus.fttol.putContents(filepath, content)
+        rat.fttol.putContents(filepath, content)
         self.files.append(cacheid)
     
     def load(self, cachid):
         if (not self.testCache(cacheid)):
             return None
         filepath = self.path + "/" + cacheid
-        return rattus.ftool.getContents(filepath)
+        return rat.ftool.getContents(filepath)
 
 
 class cacheManager:

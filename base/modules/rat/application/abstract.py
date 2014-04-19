@@ -7,6 +7,7 @@ class abstract:
     
     params = {}
     windowId = None
+    terminated = False
     
     def initParams(self):
         return self

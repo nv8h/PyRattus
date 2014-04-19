@@ -1,4 +1,4 @@
-import os, urllib2, httplib, rattus
+import urllib2
 
 class webserviceGET:
     
@@ -10,7 +10,7 @@ class webserviceGET:
         self.setConfig(config)
         return
     
-    def setConfig(config):
+    def setConfig(self, config):
         self.config = {
             "host": "127.0.0.1",
             "href": "",
@@ -23,7 +23,7 @@ class webserviceGET:
             self.config[i] = config[i]
         return
     
-    def getConfig(config):
+    def getConfig(self):
         return self.config
     
     def getHref(self):

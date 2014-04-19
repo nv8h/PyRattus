@@ -151,3 +151,43 @@ class vertexManager:
             result.append(v.toArray())
         return result
     
+    def isOver2f(self, x, y):
+        after = False
+        before = False
+        for v in self.vectors:
+            if (v.x < x and v.y < y):
+                before = True
+            if (v.x >= x and v.y >= y):
+                after = True
+        return (after and before)
+    
+    def isOver3f(self, x, y, z):
+        after = False
+        before = False
+        for v in self.vectors:
+            if (v.x < x and v.y < y and v.z < z):
+                before = True
+            if (v.x >= x and v.y >= y and v.z >= z):
+                after = True
+        return (after and before)
+    
+    def isOut2f(self, x, y):
+        after = False
+        before = False
+        for v in self.vectors:
+            if (v.x < x and v.y < y):
+                before = True
+            if (v.x >= x and v.y >= y):
+                after = True
+        return not (after and before)
+    
+    def isOut3f(self, x, y, z):
+        after = False
+        before = False
+        for v in self.vectors:
+            if (v.x < x and v.y < y and v.z < z):
+                before = True
+            if (v.x >= x and v.y >= y and v.z >= z):
+                after = True
+        return not (after and before)
+        

@@ -19,9 +19,9 @@ sys.path.append(__script_directory__)
 sys.path.append(__base_directory__ + "/modules")
 
 
-import rattus
+import rat
 
-rattus.registry.setValue("path", {
+rat.registry.setValue("path", {
                     "root": __root_directory__,
                     "cache": __cache_directory__,
                     "home": __home_directory__,
@@ -30,12 +30,12 @@ rattus.registry.setValue("path", {
                     "logs": __logs_directory__,
                     "share": __share_directory__
                 })
-rattus.registry.setValue("basepath", {
+rat.registry.setValue("basepath", {
                     "root": __base_directory__,
                     "font": __base_directory__ + "/font",
                     "icon": __base_directory__ + "/icon"
                 })
-rattus.registry.setValue("file", {
+rat.registry.setValue("file", {
                     "log":  __log_file__
                 })
 
@@ -43,6 +43,6 @@ mode = ""
 if (len(sys.argv) > 1):
     mode = sys.argv[1]
 
-rattus.init(mode)
+rat.init(mode)
 
 

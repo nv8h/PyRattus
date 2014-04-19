@@ -1,11 +1,11 @@
-import sys
+# import sys
 import os
-import rattus
+import rat
 
 def log(msg, desc=""):
     
-    now   = rattus.datetime.now()
-    files = rattus.registry.getValue("file")
+    now   = rat.datetime.now()
+    files = rat.registry.getValue("file")
     
     if (files is not None and "log" in files):
         os.system("echo '[" + str(now) + "] " + desc + ": " + msg + "' >> " + files["log"])
