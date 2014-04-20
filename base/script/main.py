@@ -1,8 +1,7 @@
 # import sys
 from rat import application,registry
-from OpenGL.GLUT import *
-from OpenGL.GLU import *
-from OpenGL.GL import *
+import gtk
+
 
 
 # set programname
@@ -13,6 +12,13 @@ class application(application.wgtk):
 
     def initParams(self):
         return self
+
+    def initElements(self):
+        self.addButton('hwButton', {'title':'Click To Exit','action': [
+            # name: name, action: function, data: self.__wnd__|None|...
+            {'name': 'clicked', 'action': self.hwButtonClicked}
+        ]})
+        return
 
     def mainAction(self):
         # to run this file "launcher.sh"
@@ -28,3 +34,7 @@ class application(application.wgtk):
 
         # Return with Error Message
         return None
+
+    def hwButtonClicked(self, widget, data=None):
+        self.quit()
+        return

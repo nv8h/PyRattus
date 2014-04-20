@@ -2,12 +2,12 @@
 from datetime import datetime
 import registry
 import logger
-import main
 import ftool
 import application
 import geometry
 from cache import *
 from service import *
+import main
 
 def init(mode = ""):
     logger.debug("Initializing...")

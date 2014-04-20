@@ -8,6 +8,7 @@ from rat import registry
 class wgtk(abstract.abstract):
 
     __wnd__ = None
+    __element__ = {}
     
     def run(self):
         gtk.main()
@@ -51,3 +52,36 @@ class wgtk(abstract.abstract):
     def show(self):
         self.__wnd__.show()
         return
+
+    def quit(self):
+        gtk.main_quit()
+        return
+
+    def getElement(self, name):
+        return self.__element__[name]
+
+    def getWindow(self):
+        return self.__wnd__
+
+
+    def addButton(self, name, options):
+        if not ('title' in options):
+            options['title'] = ''
+
+        btn = gtk.Button(options['title']);
+
+        if 'action' in options:
+            for action in options['action']:
+                data = None
+                if 'data' in action:
+                    data = action['data']
+
+                btn.connect(action['name'], action['action'], data)
+            # end for
+        # end if
+
+        btn.show()
+        self.__element__[name] = btn
+        self.__wnd__.add(btn)
+
+        return len(self.__element__)

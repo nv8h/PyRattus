@@ -26,7 +26,7 @@ class cache:
             os.system("rm '" + self.path + "/" + cacheid + "'")
     
     def testCache(self, cacheid):
-        if (not cacheid in self.files):
+        if not (cacheid in self.files):
             return False
         filepath = self.path + "/" + cacheid
         if (not os.path.is_file(filepath)):
@@ -42,13 +42,13 @@ class cache:
     
     def save(self, cacheid, content=""):
         filepath = self.path + "/" + cacheid
-        if (os.path.is_dir(filepath)):
+        if os.path.is_dir(filepath):
             return
         rat.fttol.putContents(filepath, content)
         self.files.append(cacheid)
     
-    def load(self, cachid):
-        if (not self.testCache(cacheid)):
+    def load(self, cacheid):
+        if not self.testCache(cacheid):
             return None
         filepath = self.path + "/" + cacheid
         return rat.ftool.getContents(filepath)
