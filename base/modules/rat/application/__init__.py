@@ -8,3 +8,5 @@ if (part.config['application.game'] == 1):
     from game import *
 if (part.config['application.wgtk'] == 1):
     from wgtk import *
+if (part.config['application.bgtk'] == 1):
+    from bgtk import *

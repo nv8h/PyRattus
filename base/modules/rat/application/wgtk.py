@@ -1,6 +1,5 @@
 
 
-
 import sys
 from rat import logger, registry
 

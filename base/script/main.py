@@ -8,15 +8,16 @@ import gtk
 __PROGRAMNAME__ = "programname"
 registry.setValue("programname", __PROGRAMNAME__)
 
-class application(application.wgtk):
+class application(application.bgtk):
 
     def initParams(self):
-        self.params['gladeFilename'] = registry.getValue("path")["data"] + "/window/mainwindow-libglade.glade"
-        self.params['actionDictionay']['on_btnHelloWorld_clicked'] = self.hwButtonClicked
-        self.params['actionDictionay']['on_MainWindow_destroy'] = gtk.main_quit
+        self.params['filename'] = registry.getValue("path")["data"] + "/window/mainwindow0.glade"
         return
 
     def initElements(self):
+        self.__builder__.get_object("MainWindow").show_all()
+        self.__builder__.get_object("MainWindow").connect('destroy', self.on_MainWindow_destroy)
+        self.__builder__.get_object("btnHelloWorld").connect('clicked', self.on_btnHelloWorld_clicked)
         return
 
     def mainAction(self):
@@ -34,6 +35,10 @@ class application(application.wgtk):
         # Return with Error Message
         return None
 
-    def hwButtonClicked(self, widget, data=None):
+    def on_btnHelloWorld_clicked(self, widget):
+        self.quit()
+        return
+
+    def on_MainWindow_destroy(self, widget, data=None):
         self.quit()
         return
