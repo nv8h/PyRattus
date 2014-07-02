@@ -1,8 +1,16 @@
-from rat import registry
+from rat import registry, logger
+
+import sys
 import abstract
-from OpenGL.GLUT import *
-from OpenGL.GLU import *
-from OpenGL.GL import *
+try:
+    from OpenGL.GLUT import *
+    from OpenGL.GLU import *
+    from OpenGL.GL import *
+except:
+    logger.logException("OpenGL not available")
+    logger.logInfo("try to install python-opengl package")
+    sys.exit(1)
+
 
 class glut(abstract.abstract):
     

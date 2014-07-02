@@ -1,13 +1,26 @@
 
 from datetime import datetime
+import part
 import registry
 import logger
-import ftool
-import application
-import geometry
-from cache import *
-from service import *
+
+if (part.config['ftool'] == 1):
+    import ftool
+if (part.config['application'] == 1):
+    import application
+if (part.config['geometry'] == 1):
+    import geometry
+if (part.config['cache'] == 1):
+    from cache import *
+if (part.config['service'] == 1):
+    from service import *
 import main
+
+def unload(code):
+    part.config[code] = 0
+
+def load(code):
+    part.config[code] = 1
 
 def init(mode = ""):
     logger.debug("Initializing...")

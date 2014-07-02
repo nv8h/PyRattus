@@ -11,13 +11,12 @@ registry.setValue("programname", __PROGRAMNAME__)
 class application(application.wgtk):
 
     def initParams(self):
-        return self
+        self.params['gladeFilename'] = registry.getValue("path")["data"] + "/window/mainwindow-libglade.glade"
+        self.params['actionDictionay']['on_btnHelloWorld_clicked'] = self.hwButtonClicked
+        self.params['actionDictionay']['on_MainWindow_destroy'] = gtk.main_quit
+        return
 
     def initElements(self):
-        self.addButton('hwButton', {'title':'Click To Exit','action': [
-            # name: name, action: function, data: self.__wnd__|None|...
-            {'name': 'clicked', 'action': self.hwButtonClicked}
-        ]})
         return
 
     def mainAction(self):

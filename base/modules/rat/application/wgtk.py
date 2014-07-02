@@ -1,28 +1,41 @@
-import pygtk
-pygtk.require('2.0')
-import gtk
-import abstract
-from rat import registry
 
+
+
+import sys
+from rat import logger, registry
+
+
+try:
+ 	import pygtk
+  	pygtk.require("2.0")
+except:
+    logger.logWarning("pygtk 2.0 not available")
+    logger.logInfo("try to install python-gtk package")
+
+try:
+	import gtk
+  	import gtk.glade
+except:
+    logger.logException("gtk or gtk.glade not available")
+    logger.logInfo("try to install python-gtk2, python-glade2 packages")
+    sys.exit(1)
+
+
+
+import abstract
 
 class wgtk(abstract.abstract):
 
-    __wnd__ = None
     __element__ = {}
+    wTree = None
     
     def run(self):
         gtk.main()
         return
 
     def __init__(self):
-        self.params['timeout'] = 20
-        self.params['border'] = {}
-        self.params['border']['width'] = 10
-        self.params['x'] = -1
-        self.params['y'] = -1
-        self.params['width'] = 640
-        self.params['height'] = 400
-        self.params['title'] = registry.getValue('programname')
+        self.params['gladeFilename'] = None
+        self.params['actionDictionay'] = {}
         
         self.initParams()
 
@@ -34,54 +47,36 @@ class wgtk(abstract.abstract):
         return
 
     def initWindow(self):
-        self.__wnd__ = gtk.Window(gtk.WINDOW_TOPLEVEL)
-        self.__wnd__.set_size_request(self.params['width'], self.params['height'])
-        self.__wnd__.set_border_width(self.params['border']['width'])
-        self.__wnd__.set_title(self.params['title'])
-        self.__wnd__.connect("delete_event", lambda w,e: gtk.main_quit())
-        self.show()
+        try:
+            self.wTree = gtk.glade.XML(self.params['gladeFilename'])
+            self.wTree.signal_autoconnect(self.params['actionDictionay'])
+        except:
+            logger.logException("Error has occurred while glade try to load \"" + self.params['gladeFilename'] + "\" XML file")
+            logger.logInfo("More info: " + str(sys.exc_info()))
+            sys.exit(1)
         return
 
     def initElements(self):
-        return
+        #window = self.wTree.get_widget("MainWindow")
+		#window.connect("destroy", gtk.main_quit)
+        pass
 
     def hide(self):
-        self.__wnd__.hide()
+        window = self.wTree.get_widget("MainWindow")
+        window.hide()
         return
 
     def show(self):
-        self.__wnd__.show()
+        window = self.wTree.get_widget("MainWindow")
+        window.show()
         return
 
     def quit(self):
         gtk.main_quit()
         return
 
-    def getElement(self, name):
-        return self.__element__[name]
-
-    def getWindow(self):
-        return self.__wnd__
+    def getWTree(self):
+        return self.wTree
 
 
-    def addButton(self, name, options):
-        if not ('title' in options):
-            options['title'] = ''
 
-        btn = gtk.Button(options['title']);
-
-        if 'action' in options:
-            for action in options['action']:
-                data = None
-                if 'data' in action:
-                    data = action['data']
-
-                btn.connect(action['name'], action['action'], data)
-            # end for
-        # end if
-
-        btn.show()
-        self.__element__[name] = btn
-        self.__wnd__.add(btn)
-
-        return len(self.__element__)

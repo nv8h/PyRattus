@@ -1,6 +1,14 @@
-from rat import registry
+from rat import registry, logger
 import abstract
-import pygame
+import sys
+
+
+try:
+    import pygame
+except:
+    logger.logException("Pygame not available")
+    logger.logInfo("try to install python-pygame package")
+    sys.exit(1)
 
 
 class game(abstract.abstract):
